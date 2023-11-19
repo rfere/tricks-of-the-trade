@@ -151,7 +151,7 @@
             const dpsElement = row.querySelector('.main-per-second-amount');
             let dps = parseNumber(dpsElement.innerText);
             dps = (totalDamage / fightDuration).toFixed(1);
-            dpsElement.innerText = (+dps).toLocaleString();
+            dpsElement.innerText = (+dps).toLocaleString('en-US', {minimumFractionDigits: 1});
             percentDamageElement.innerText = percentDamage;
             totalDamageElement.innerText = localizeTotal(totalDamage);
             const damageBarElement = row.querySelector('div.Rogue-bg');
