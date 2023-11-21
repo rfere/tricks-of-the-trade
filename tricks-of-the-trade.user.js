@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Tricks of the Trade
-// @version      0.1.0
+// @version      0.1.1
 // @grant        none
 // @author       Raul
 // @license      GPL-3.0-or-later
@@ -15,7 +15,7 @@
     'use strict';
 
     const tricksRegexp = /.+ \((.+)\)/
-    const locale = window.location.hostname.match(/([a-z]+).classic.+/)?.[1] || 'en';
+    const locale = window.location.hostname.match(/([a-z]+).warcraftlogs.+/)?.[1] || 'en';
 
     const localeMap = {
         'en': {
@@ -64,11 +64,6 @@
         return num.endsWith(millions) ? num.replace(millions, '') * 1000000
             : (num.endsWith(thousands) ? num.replace(thousands, '') * 1000 : parseFloat(num.replace(',', '')))
     }
-
-    const parseDuration = (duration) => {
-        const parts = duration.match(/(\d+):(\d+)/);
-        return (parts[1] * 60) + +parts[2];
-    };
 
     const localizeTotal = (damage) => {
         const currentLocale = localeMap[locale];
@@ -124,7 +119,7 @@
     const doJustice = () => {
         const table = document.querySelector('table.summary-table');
         const playerRows = table.querySelectorAll('tr.odd, tr.even');
-        const fightDuration = parseDuration(document.querySelector('span.fight-duration').innerText);
+        const fightDuration = parseNumber(table.querySelector('tr.totals td.num.ui-state-default').innerText.replace('s', ''))
         const topPlayerDamage = parseNumber(playerRows[0].querySelector('.report-amount-total').innerText);
         const totalEncounterDamage = parseNumber(table.querySelector('tr.totals span.report-amount-total').innerText);
         const tricksRows = Array.from(playerRows).filter(x => Array.from(x.getElementsByTagName('a')).filter(y => y.innerText.match(tricksRegexp)).length);
