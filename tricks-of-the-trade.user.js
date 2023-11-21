@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Tricks of the Trade
-// @version      0.1.2
+// @version      0.1.3
 // @grant        none
 // @author       Raul
 // @license      GPL-3.0-or-later
@@ -15,7 +15,7 @@
     'use strict';
 
     const tricksRegexp = /.+ \((.+)\)/
-    const locale = window.location.hostname.match(/([a-z]+).warcraftlogs.+/)?.[1] || 'classic';
+    const locale = window.location.hostname.match(/(\w+).+/)[1];
 
     const localeMap = {
         'classic': {
