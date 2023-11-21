@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Tricks of the Trade
-// @version      0.1.1
+// @version      0.1.2
 // @grant        none
 // @author       Raul
 // @license      GPL-3.0-or-later
@@ -15,10 +15,10 @@
     'use strict';
 
     const tricksRegexp = /.+ \((.+)\)/
-    const locale = window.location.hostname.match(/([a-z]+).warcraftlogs.+/)?.[1] || 'en';
+    const locale = window.location.hostname.match(/([a-z]+).warcraftlogs.+/)?.[1] || 'classic';
 
     const localeMap = {
-        'en': {
+        'classic': {
             'millions': 'm',
             'thousands': 'k'
         },
@@ -51,10 +51,10 @@
             'thousands': '千'
         },
         get es() {
-            return this.en;
+            return this.classic;
         },
         get br() {
-            return this.en;
+            return this.classic;
         },
     };
 
