@@ -96,24 +96,23 @@
     };
 
     const sortPlayersByDamage = (table, playerRows) => {
-        let times = 0; let sorted = true;
-
-        do {
-            sorted = true;
-            for (let i = 0; i < playerRows.length - 2; i++) {
-                const a = playerRows[i];
-                const b = playerRows[i + 1];
-                const aDamage = parseNumber(a.querySelector('.main-per-second-amount').innerText);
-                const bDamage = parseNumber(b.querySelector('.main-per-second-amount').innerText);
+        let swapped
+        for (let i = 0; i < playerRows.length - 1; i++) {
+            swapped = false
+            for (let j = 0; j < playerRows.length - i - 1; j++) {
+                const a = playerRows[j]
+                const b = playerRows[j + 1]
+                const aDamage = parseNumber(a.querySelector('.main-per-second-amount').innerText)
+                const bDamage = parseNumber(b.querySelector('.main-per-second-amount').innerText)
                 if (aDamage < bDamage) {
-                    sorted = false;
-                    a.parentNode.insertBefore(b.parentNode.removeChild(b), a);
-                    playerRows = table.querySelectorAll('tr.odd, tr.even');
+                    swapped = true;
+                    a.parentNode.insertBefore(b.parentNode.removeChild(b), a)
+                    playerRows = table.querySelectorAll('tr.odd, tr.even')
                 }
             }
 
-            times++;
-        } while (!sorted && times < 100);
+            if (!swapped) break
+        }
     };
 
     const doJustice = () => {
