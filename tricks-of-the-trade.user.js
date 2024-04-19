@@ -1,6 +1,6 @@
 // ==UserScript==
 // @name         Tricks of the Trade
-// @version      0.1.3
+// @version      0.1.4
 // @grant        none
 // @author       Raul
 // @license      GPL-3.0-or-later
